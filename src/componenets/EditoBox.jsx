@@ -14,8 +14,6 @@ function EditorBox() {
         }
     }, [obj.id, obj.syntax]);
 
-    // Moved dispatch into a useEffect to ensure it only runs when valuee changes
-    // This prevents re-render loops and improves performance
     useEffect(() => {
         dispatch(setApiData({ name: obj.id, value: valuee }));
     }, [valuee, obj.id, dispatch]);
@@ -27,7 +25,6 @@ function EditorBox() {
     return (
         <div className="w-full h-full min-h-[300px] md:min-h-[400px]">
             <Editor
-                /* Changed to 100% to fit the parent container's responsive height */
                 height="100%" 
                 theme="vs-dark"
                 language={obj.id}
@@ -36,9 +33,19 @@ function EditorBox() {
                 options={{
                     fontSize: 14,
                     automaticLayout: true,
-                    minimap: { enabled: false }, // Better for mobile/small screens
+                    minimap: { enabled: false },
                     scrollBeyondLastLine: false,
                     padding: { top: 10 },
+                    
+                    // --- MOBILE OPTIMIZATION SETTINGS ---
+                    wordWrap: "on",               // Force text to wrap to the next line
+                    wrappingStrategy: "advanced", // Better wrapping calculations
+                    lineNumbersMinChars: 3,       // Shrinks the left margin for line numbers
+                    glyphMargin: false,           // Removes the extra left margin
+                    folding: false,               // Removes code folding arrows to save space
+                    lineDecorationsWidth: 0,      // Removes the gutter space between numbers and code
+                    overviewRulerLanes: 0,        // Removes the vertical bar next to scrollbar
+                    // ------------------------------------
                 }}
             />
         </div>
