@@ -2,6 +2,7 @@ import React from "react";
 import EditorBox from "./EditoBox";
 import LanguageButton from "./LanguageButton";
 import RunButton from "./RunButton ";
+import ResultBox from "./ResultBox";
 
 const Backyard = () => {
   return (
@@ -48,7 +49,7 @@ const Backyard = () => {
 
           {/* Box 2 */}
          <div className="h-[400px] bg-zinc-900 border border-zinc-800 rounded-xl p-2 shadow-lg hover:border-zinc-600 transition overflow-hidden">
-            
+            <ResultBox/>
           </div>
 
         </div>
