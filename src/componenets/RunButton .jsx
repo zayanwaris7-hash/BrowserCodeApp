@@ -6,6 +6,7 @@ function RunButton() {
     const dispatch = useDispatch();
     const obj2 = useSelector((state) => (state.data)); 
     const obj = useSelector((state) => (state.Apidata));
+    const inpObj=useSelector((state)=>(state.input));
 
     const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
@@ -23,7 +24,7 @@ function RunButton() {
                 body: JSON.stringify({
                     source_code: btoa(obj.value),
                     language_id: obj2.judge0Id,
-                    stdin: btoa(""), 
+                    stdin: btoa(inpObj.value), 
                 }),
             });
 
